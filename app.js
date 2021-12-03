@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended: true}))
 // Add static files to express app
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/public/views')));
+app.use(express.static(path.join(__dirname, '/public/js')));
 
 let weatherDetails;
 

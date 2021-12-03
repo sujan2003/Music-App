@@ -22,13 +22,9 @@ const progress = document.getElementById("progress")
 const title = document.getElementById('title')
 const progressContainer = document.getElementById("progress-container")
 
-const bf = "Before You Go Cover.jpeg";
+import {Song} from "./modules/Song"
 
-
-
-
-
-
+console.log(Song)
 // const cover = document.getElementById("cover")
 
 // song playlists
