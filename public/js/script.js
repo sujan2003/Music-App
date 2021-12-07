@@ -33,11 +33,6 @@ const snow3 = new Audio("/music/ef-crw.mp3")*/
 const progress = document.getElementById("progress")
 const progressContainer = document.getElementById("progress-container")
 
-
-//commented out so the music player works
-
-console.log(Song);
-
 // song playlists
 const sunny = [
     {
