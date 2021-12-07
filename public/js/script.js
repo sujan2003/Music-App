@@ -2,6 +2,7 @@ const musicContainer = document.getElementById("music-container")
 const playBtn = document.getElementById("play")
 const prevBtn = document.getElementById("prev")
 const nextBtn = document.getElementById("next")
+console.log("hi")
 
 const audio = document.getElementById("sm-m5")
 const cover = document.getElementById("sm-m5-cvr")
