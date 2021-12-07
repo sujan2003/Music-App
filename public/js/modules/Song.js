@@ -9,15 +9,15 @@ class Song {
      * @param {String} options.mood
      */
     constructor(handler, options = {
-        audioDirectory = "",
-        coverDirectory = "",
-        genre = "",
-        mood = ""
+        audioDirectory: "",
+        coverDirectory: "",
+        genre: "",
+        mood: ""
     }) {
         this.handler = handler;
 
         this.audio = new Audio(options.audioDirectory);
-        
+
         // todo: figure out cover image
         //this.cover = options.coverDirectory;
 
@@ -51,4 +51,4 @@ class Song {
     }
 }
 
-module.exports = Song;
+export { Song };
