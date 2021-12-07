@@ -1,3 +1,5 @@
+import { Song } from "/modules/Song.js"
+
 const musicContainer = document.getElementById("music-container")
 const playBtn = document.getElementById("play")
 const prevBtn = document.getElementById("prev")
@@ -33,8 +35,8 @@ const progressContainer = document.getElementById("progress-container")
 
 
 //commented out so the music player works
-    // import {Song} from "./modules/Song"
-    // console.log(Song)
+
+console.log(Song);
 
 // song playlists
 const sunny = [
@@ -43,14 +45,14 @@ const sunny = [
         artist: "Maroon 5",
         img: "sm-m5-cvr",
         music: "sm-m5"
-    }, 
+    },
 
     {
-        title: "Watermelon Sugar", 
+        title: "Watermelon Sugar",
         artist: "Harry Styles",
         img: "ws-hs-cvr",
         music: "ws-hs"
-    }, 
+    },
 
     {
         title: "Peaches",
@@ -69,7 +71,7 @@ const cloudy = [
     },
 
     {
-        title: "Fly Me to the Moon", 
+        title: "Fly Me to the Moon",
         artist: "Frank Sinatra",
         img: "fmttm-fs-cvr",
         music: "fmttm-fs"
@@ -84,20 +86,20 @@ const cloudy = [
 ]
 // these next 3 playlists will need to have title, artist, img, music added to it like the ones above
 const rain = [
-    "Perfect - Ed Sheeran", 
-    "Can't Help Falling in Love - Elvis Presley", 
+    "Perfect - Ed Sheeran",
+    "Can't Help Falling in Love - Elvis Presley",
     "Right Here Waiting - Richard Marx"
 ]
 
 const thunderstorm = [
-    "Before You Go - Lewis Capaldi", 
-    "Train Wreck - James Arthur", 
+    "Before You Go - Lewis Capaldi",
+    "Train Wreck - James Arthur",
     "Lightning - Little Mix"
 ]
 
 const snow = [
-    "cardigan - Taylor Swift", 
-    "Mystery of Love - Sufjan Stevens", 
+    "cardigan - Taylor Swift",
+    "Mystery of Love - Sufjan Stevens",
     "Electric Feel - CRW"
 ]
 
@@ -113,14 +115,14 @@ let songIndex = 0
 loadSong(sunny[songIndex]) // currently the loadSong functions with the assigned playlist, in this case i assigned it 'sunny' for testing purposes
 
 // updates details of the song
-function loadSong(song){
+function loadSong(song) {
     title.innerText = song.title;
     artist.innerText = song.artist;
     audio.src = `/music/${song.music}.mp3`;
     cover.src = `/images/${song.img}.jpeg`;
 }
 
-function playSong(){
+function playSong() {
     musicContainer.classList.add('play');
     playBtn.querySelector('i.fas').classList.remove('fa-play')
     playBtn.querySelector('i.fas').classList.add('fa-pause')
@@ -128,7 +130,7 @@ function playSong(){
     audio.play()
 }
 
-function pauseSong(){
+function pauseSong() {
     musicContainer.classList.remove('play')
     playBtn.querySelector('i.fas').classList.add('fa-play')
     playBtn.querySelector('i.fas').classList.remove('fa-pause')
@@ -139,7 +141,7 @@ function pauseSong(){
 function prevSong() {
     songIndex--;
 
-    if(songIndex < 0){
+    if (songIndex < 0) {
         songIndex = sunny.length - 1 //only works with 'sunny' playlist right now
     }
 
@@ -150,7 +152,7 @@ function prevSong() {
 function nextSong() {
     songIndex++;
 
-    if(songIndex > sunny.length-1){ //only works with 'sunny' playlist right now
+    if (songIndex > sunny.length - 1) { //only works with 'sunny' playlist right now
         songIndex = 0
     }
 
@@ -158,28 +160,28 @@ function nextSong() {
     playSong()
 }
 
-function updateProgress(x){
-    const {duration, currentTime} = x.srcElement
-    const progressPercent = (currentTime/duration)*100
+function updateProgress(x) {
+    const { duration, currentTime } = x.srcElement
+    const progressPercent = (currentTime / duration) * 100
     progress.style.width = `${progressPercent}%`
 }
 
-function setProgress(x){
+function setProgress(x) {
     const width = this.clientWidth
     const clickX = x.offsetX
     const duration = audio.duration
 
-    audio.currentTime = (clickX/width)*duration
+    audio.currentTime = (clickX / width) * duration
 }
 
 
 // eventlisteners
 playBtn.addEventListener('click', () => {
-    const isPlaying = musicContainer. classList.contains('play')
+    const isPlaying = musicContainer.classList.contains('play')
 
-    if (isPlaying){
+    if (isPlaying) {
         pauseSong()
-    } else{
+    } else {
         playSong()
     }
 });
