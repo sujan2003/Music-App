@@ -80,6 +80,9 @@
     1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4),
     1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2),
     1px 30px 60px rgba(16, 16, 16, 0.4);
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-color: rgb(129, 129, 129);
+  -webkit-text-stroke-width: 1px;
   font-size: 30px;
   z-index: 1;
 }
