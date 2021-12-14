@@ -13,6 +13,8 @@ const weather = (url => {
     return JSON.parse(xmlHttp.responseText);
 })(`/weather?location=${location}`);
 
+document.getElementById("city-name").innerText = (`${location} • ${weather.main}`);
+
 const AudioPlayer = new Player();
 const CollectionOfSongs = new Playlist();
 
@@ -38,5 +40,3 @@ for (let i in snowSongs) {
 }
 
 AudioPlayer.loadPlaylist(CollectionOfSongs);
-
-document.getElementById("city-name").innerText = location;
