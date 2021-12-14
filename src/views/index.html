@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Music App</title>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="index-body">
+  <form>
+    <div class="form">
+      <input id="form-input" type="text" />
+      <label class="label-name">
+        <span class="content-name">Enter City Name</span>
+      </label>
+    </div>
+
+    <div class="btn">
+      <button id="form-button" class="btn btn-primary">ENTER</button>
+    </div>
+  </form>
+
+
+  <div class="note">
+    <p>Get a Music Playlist Based on Your City's Weather!</p>
+  </div>
+
+  <div>
+    <img class="logo" src="/images/musiclogo.png" alt="Music Meteorlogy">
+    <img class="map" src="/images/map.png" alt="Map Background">
+  </div>
+
+  <script type="module">
+    import Cookies from "./scripts/modules/js.cookie.mjs";
+
+    const formButton = document.getElementById("form-button");
+    const formInput = document.getElementById("form-input");
+
+    formButton.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (formInput.value != "") {
+        // Save location as cookie
+        Cookies.set("location", formInput.value)
+
+        // Redirect to music home page
+        document.location = '/music.html';
+      }
+    });
+  </script>
+</body>
+
+</html>
