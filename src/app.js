@@ -1,11 +1,8 @@
+require('dotenv').config({ path: './.env.local' }) // Loads enviorment variables from .env file
+
 const express = require('express');
 const app = new express();
-const request = require("request");
 const path = require('path');
-const fs = require('fs');
-
-require('dotenv').config({ path: './.env.local' }) // Loads enviorment variables from .env file
-const apiKey = `${process.env.OPEN_WEATHER_MAP}` // storing the variable from .env file to here
 
 // Load middleware
 app.use(express.urlencoded({ extended: true }))
@@ -18,18 +15,27 @@ app.use('/images', express.static(path.join(__dirname, '/public/images')));
 app.use('/css', express.static(path.join(__dirname, '/public/css')));
 
 // APIs
+const request = require("request");
+const WeatherAPIKey = `${process.env.OPEN_WEATHER_MAP}` // storing the variable from .env file to here
+
 const MusicAPI = require('./public/music/main.js');
 const music = new MusicAPI(app);
 
 app.get('/weather', (req, res) => {
     const Location = req.query.location;
 
-    request(`http://api.openweathermap.org/data/2.5/weather?q=${Location}&units=metric&appid=${apiKey}`, (err, response, body) => {
-        const weather = (!err)
-            ? JSON.parse(body)
+    request(`http://api.openweathermap.org/data/2.5/weather?q=${Location}&units=metric&appid=${WeatherAPIKey}`, (err, response, body) => {
+        body = JSON.parse(body);
+
+        const weather = (body.cod != 404)
+            ? {
+                main: body.weather[0].main,
+                description: body.weather[0].description,
+                temp: body.main.temp,
+            }
             : null;
 
-        res.send(weather)
+        res.json(weather);
     })
 });
 
