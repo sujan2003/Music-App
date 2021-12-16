@@ -25,15 +25,21 @@ app.get('/weather', (req, res) => {
     const Location = req.query.location;
 
     request(`http://api.openweathermap.org/data/2.5/weather?q=${Location}&units=metric&appid=${WeatherAPIKey}`, (err, response, body) => {
-        body = JSON.parse(body);
+        body = body ? JSON.parse(body) : null;
 
-        const weather = (body.cod != 404)
+        const weather = (body && body.cod != 404)
             ? {
                 main: body.weather[0].main,
                 description: body.weather[0].description,
                 temp: body.main.temp,
             }
-            : null;
+            : {
+                main: 'N/A',
+                description: 'No weather found.',
+                temp: 20
+            };
+
+        console.log(weather)
 
         res.json(weather);
     })
