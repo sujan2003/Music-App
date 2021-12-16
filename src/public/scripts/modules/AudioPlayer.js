@@ -177,6 +177,16 @@ class AudioPlayer {
 
             this.setSongProgress(percent);
         });
+
+        // Play audio player once page interacted with
+        let documentClicked = false;
+        document.addEventListener('click', () => {
+            if (!documentClicked) {
+                this.play();
+            }
+
+            documentClicked = true;
+        });
     }
 }
 
