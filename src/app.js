@@ -5,7 +5,7 @@ const app = new express();
 const path = require('path');
 
 // Load middleware
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 
 // Host files
 app.use('', express.static(path.join(__dirname, '/views')));
@@ -29,11 +29,13 @@ app.get('/weather', (req, res) => {
 
         const weather = (body && body.cod != 404)
             ? {
+                id: body.weather[0].id,
                 main: body.weather[0].main,
                 description: body.weather[0].description,
                 temp: body.main.temp,
             }
             : {
+                id: 0,
                 main: 'N/A',
                 description: 'No weather found.',
                 temp: 20
