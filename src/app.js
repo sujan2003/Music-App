@@ -39,8 +39,6 @@ app.get('/weather', (req, res) => {
                 temp: 20
             };
 
-        console.log(weather)
-
         res.json(weather);
     })
 });
