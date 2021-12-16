@@ -1,4 +1,16 @@
 import { Song } from "./Song.js"
+import { Events } from "./Events.js"
+
+// Function to format query strings from objects
+// https://stackoverflow.com/questions/1714786/query-string-encoding-of-a-javascript-object
+const serializeQuery = (obj) => {
+    var str = [];
+    for (var p in obj)
+        if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+    return str.join("&");
+}
 
 class Playlist {
     /**
@@ -12,17 +24,21 @@ class Playlist {
         title: "Playlist",
         description: "",
 
-        coverSource: ""
+        loadFromAttributes: {}
     }) {
         this.title = options.title;
-
         this.description = options.description;
-
         this.coverSource = options.coverSource;
+
+        this.songs = new Map();
 
         this.lastPlayedIndex = 0;
 
-        this.songs = new Map();
+        this.events = new Events();
+
+        if (options.loadFromAttributes) {
+            this.loadSongsWithAttributesFromServer(options.loadFromAttributes);
+        }
     }
 
     /**
@@ -74,6 +90,31 @@ class Playlist {
         this.randomIndex = randomIndex;
 
         return this.getSong(randomIndex);
+    }
+
+    async loadSongsWithAttributesFromServer(attributes) {
+        const songs = await (async url => {
+            const xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", url, false);
+            xmlHttp.send(null);
+
+            return JSON.parse(xmlHttp.responseText);
+        })(`/music/search?${serializeQuery(attributes)}`);
+
+        for (let i in songs) {
+            const song = songs[i];
+
+            this.addSong(
+                new Song({
+                    audioSource: song.stream,
+                    coverSource: song.cover,
+                    title: song.title,
+                    artist: song.artist
+                })
+            );
+        }
+
+        this.events.trigger("loadedSongs");
     }
 }
 
