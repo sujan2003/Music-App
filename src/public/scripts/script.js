@@ -14,17 +14,15 @@ const weather = (url => {
 
 document.getElementById("city-name").innerText = (`${location} • ${weather.main}`);
 
-
 const AudioPlayer = new Player();
-const SnowPlaylist = new Playlist({
-    title: 'Snow Weather',
+const playlist = new Playlist({
+    title: 'Weather',
 
     loadFromAttributes: {
-        weather: "Snow",
-        weather: "Clear"
+        weather: weather.main
     }
 });
 
-SnowPlaylist.events.on("loadedSongs", () => {
-    AudioPlayer.loadPlaylist(SnowPlaylist);
-});
+playlist.events.on("loadedSongs", () => {
+    AudioPlayer.loadPlaylist(playlist);
+})
