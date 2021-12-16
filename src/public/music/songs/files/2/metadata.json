@@ -1,5 +1,5 @@
 {
   "title": "cardigan",
   "artist": "Taylor Swift",
-  "weather": ["snow"]
+  "weather": ["Snow", "Drizzle", "Clouds", "Mist", "Fog"]
 }
