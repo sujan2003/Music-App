@@ -30,11 +30,11 @@ class Playlist {
         this.description = options.description;
         this.coverSource = options.coverSource;
 
+        this.events = new Events();
+
         this.songs = new Map();
 
         this.lastPlayedIndex = 0;
-
-        this.events = new Events();
 
         if (options.loadFromAttributes) {
             this.loadSongsWithAttributesFromServer(options.loadFromAttributes);
