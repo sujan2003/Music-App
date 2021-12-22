@@ -1,3 +1,4 @@
+import { Events } from "./Events.js"
 class AudioPlayer {
     /**
      * Create new audio player
@@ -17,6 +18,7 @@ class AudioPlayer {
         this.nextBtn = document.getElementById("next");
 
         // Variables
+        this.events = new Events();
         this.isPlaying = false;
 
         // Setup audio player
@@ -73,6 +75,7 @@ class AudioPlayer {
      * Play next song in loaded playlist
      */
     nextSong() {
+        this.events.trigger("playingNextSong");
         const nextSong = this.playlist.getNextSong();
 
         this.loadSong(nextSong);
@@ -82,6 +85,7 @@ class AudioPlayer {
      * Play previous song in loaded playlist
      */
     previousSong() {
+        this.events.trigger("playingPreviousSong");
         const previousSong = this.playlist.getPreviousSong();
 
         this.loadSong(previousSong);
