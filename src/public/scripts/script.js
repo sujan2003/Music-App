@@ -1,11 +1,10 @@
-import Cookies from "./modules/js.cookie.mjs";
 import { AudioPlayer as Player } from "./modules/AudioPlayer.js"
 import { Playlist } from "./modules/Playlist.js"
+import Cookies from "./modules/js.cookie.mjs";
 
 // Create new audio player
 const AudioPlayer = new Player();
 
-// TEMP SETUP FOR TESTING
 let weather;
 
 function updatePlayer() {
@@ -23,8 +22,9 @@ function updatePlayer() {
         // Update weather variable
         weather = newWeather;
 
-        // Display location and weather
+        // Update displaying information
         document.getElementById("city-name").innerText = (`${location} • ${newWeather.main}`);
+        document.title = (`${newWeather.main} · Music Meteorlogy`);
 
         // Create a new playlist attributed to the current weather
         const playlist = new Playlist({

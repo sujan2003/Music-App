@@ -208,18 +208,17 @@ body {
   transform: inherit;
 }
 
-/*/////////////////////////////music.css and some fav.css stuff////////////////////////////*/
+/*/////////////////////////////music.css stuff////////////////////////////*/
 
-.music-body,
-.favorites-body {
+.music-body {
   background-color: #d4f6fc;
   position: relative;
   height: 100vh;
   margin: 0;
+  /* display: flex; */
 }
 
-.top-buttons,
-.fav-buttons {
+.top-buttons {
   position: absolute;
   text-align: right;
   left: 50%;
@@ -263,8 +262,7 @@ body {
   transform: scale(1.1, 1.1);
 }
 
-.banner .top-buttons .top,
-.fav-banner .fav-buttons .fav-top {
+.banner .top-buttons .top {
   border-radius: 30px;
   width: 150px;
   height: 50px;
@@ -273,9 +271,7 @@ body {
 }
 
 .top::after,
-.top::before,
-.fav-top::after,
-.fav-top::before {
+.top::before {
   content: " ";
   position: absolute;
   border-radius: inherit;
@@ -287,35 +283,24 @@ body {
   transition: transform 0.3 ease;
 }
 
-.banner .top-buttons .top:hover,
-.fav-banner .fav-buttons .fav-top:hover {
+.banner .top-buttons .top:hover {
   transform: scale(1.1, 1.1);
 }
 
-.top:hover::after,
-.fav-top:hover::after {
+.top:hover::after {
   transform: scale(1.1, 1.1);
 }
 
-.top:hover::before,
-.fav-top:hover::before {
+.top:hover::before {
   transform: scale(1, 1);
 }
 
-#mymusic,
-#fav-mymusic {
+#mymusic {
   margin-right: 100px;
   font-family: monospace;
 }
 
-#fav,
-#fav-fav {
-  margin-right: 100px;
-  font-family: monospace;
-}
-
-#city,
-#fav-city {
+#city {
   font-family: monospace;
 }
 
@@ -477,15 +462,4 @@ body {
 
 #title #artist {
   color: black;
-}
-
-/*//////////////////////////////////////favorites.css stuff//////////////////////////////////*/
-
-.fav-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 3px sold black;
-  z-index: 1;
 }
